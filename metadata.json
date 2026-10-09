@@ -1,0 +1,6 @@
+{
+  "name": "AgriShield - Automated Plant Disease Detection",
+  "description": "Precision agricultural plant pathogen diagnosis platform with weather telemetry correlation, batch scanning, and digital health records.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

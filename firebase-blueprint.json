@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile data for agronomists and farmers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "email", "createdAt"]
+    },
+    "ScanRecord": {
+      "title": "ScanRecord",
+      "description": "Plant disease diagnosis and field scan record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 64 },
+        "disease": { "type": "string", "maxLength": 128 },
+        "pathogen": { "type": "string", "maxLength": 128 },
+        "crop": { "type": "string", "maxLength": 128 },
+        "location": { "type": "string", "maxLength": 256 },
+        "status": {
+          "type": "string",
+          "enum": ["Follow-up Required", "Active Treatment", "Resolved", "Monitoring"]
+        },
+        "confidence": { "type": "number" },
+        "imageCount": { "type": "number" },
+        "lossMitigated": { "type": "string", "maxLength": 64 },
+        "notes": { "type": "string", "maxLength": 2048 },
+        "daysAgo": { "type": "number" },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "date", "disease", "location", "status", "confidence"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Agronomist profile records"
+    },
+    "/users/{userId}/records/{recordId}": {
+      "schema": "ScanRecord",
+      "description": "Plant diagnostic scan records scoped to the user"
+    }
+  }
+}
